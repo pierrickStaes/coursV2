@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Venezia.Models;
 using Venezia.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Venezia.Controllers
 {
