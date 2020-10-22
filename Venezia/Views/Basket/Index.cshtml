@@ -1,0 +1,80 @@
+﻿@model Venezia.Models.BasketViewModel
+
+<h1>Mon panier</h1>
+
+@if (Model != null)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @{this.Write(Html.DisplayNameForInnerType<Venezia.Models.Car, string>(x => x.Mark));}
+            </th>
+            <th>
+                Modèle
+            </th>
+            <th>
+                Prix
+            </th>
+            <th>
+                Carburant
+            </th>
+            <th>
+                Autonome
+            </th>
+            <th>
+                Quantité
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Cars)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Key.Mark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Key.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Key.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Key.FuelType.Label)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Key.Autonomous)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td></td>
+        </tr>
+        }
+
+    <td></td>
+    </tbody>
+    <thead>
+        <tr>
+            <th>
+                Prix total
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Total)
+            </td>
+        </tr>
+    </tbody>
+</table>
+}
+else
+{
+    <h2>Votre panier est vide</h2>
+}
+
