@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Venezia.Data;
+using Venezia.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Venezia
 {
@@ -34,6 +36,10 @@ namespace Venezia
             services.AddDbContext<VeneziaContext>(options => options
                     .UseLoggerFactory(VeneziaContext.SqlLogger)
                     .UseSqlServer(Configuration.GetConnectionString("VeneziaContext")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<VeneziaContext>()
+                    .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +64,8 @@ namespace Venezia
                 endpoints.MapControllerRoute(
                     name:"default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }

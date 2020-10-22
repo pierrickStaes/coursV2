@@ -17,10 +17,10 @@ namespace Venezia.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<VeneziaContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("dbIdentityContextConnection")));
+                        context.Configuration.GetConnectionString("VeneziaContext")));
 
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<VeneziaContext>();
+                //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                  //  .AddEntityFrameworkStores<VeneziaContext>();
             });
         }
     }
