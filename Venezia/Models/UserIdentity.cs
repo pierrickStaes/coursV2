@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Venezia.Models
 {
-    public class User : IdentityUser
+    public class UserIdentity : IdentityUser
     {
     }
 }

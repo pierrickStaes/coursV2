@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Venezia.Data;
 using Venezia.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Venezia
 {
@@ -40,6 +41,21 @@ namespace Venezia
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<VeneziaContext>()
                     .AddDefaultTokenProviders();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                    .AddRazorPagesOptions(options =>
+                    {
+                        options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                        options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                    });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

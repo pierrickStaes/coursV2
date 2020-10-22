@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +50,7 @@ namespace Venezia.Controllers
         }
 
         // GET: Cars/Create
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             //this.ViewBag.Fuels = await _context.Fuel.ToListAsync();
@@ -77,6 +79,7 @@ namespace Venezia.Controllers
         }
 
         // GET: Cars/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -130,6 +133,7 @@ namespace Venezia.Controllers
         }
 
         // GET: Cars/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
