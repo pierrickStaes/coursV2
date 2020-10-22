@@ -27,6 +27,7 @@ namespace Venezia
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             services.AddSession();
 
@@ -41,12 +42,16 @@ namespace Venezia
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
-
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             
             app.UseRouting();
             app.UseSession();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
