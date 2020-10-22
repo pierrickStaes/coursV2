@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Venezia.Models;
 
 namespace Venezia.Areas.Identity.Pages.Account
 {
@@ -21,6 +22,7 @@ namespace Venezia.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -54,6 +56,9 @@ namespace Venezia.Areas.Identity.Pages.Account
             [Display(Name = "Confirmation du mot de passe")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "Est Admin")]
+            public bool estAdmin { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -72,6 +77,14 @@ namespace Venezia.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    if (Input.estAdmin)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "Simple");
+                    }
                     await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                 }

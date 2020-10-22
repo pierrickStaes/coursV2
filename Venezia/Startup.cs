@@ -13,6 +13,8 @@ using Venezia.Data;
 using Venezia.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Venezia
 {
@@ -33,6 +35,7 @@ namespace Venezia
             services.AddRazorPages();
 
             services.AddSession();
+            services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.AddDbContext<VeneziaContext>(options => options
                     .UseLoggerFactory(VeneziaContext.SqlLogger)
@@ -77,6 +80,7 @@ namespace Venezia
 
             app.UseEndpoints(endpoints =>
             {
+
                 endpoints.MapControllerRoute(
                     name:"default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

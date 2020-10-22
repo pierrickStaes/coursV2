@@ -219,3 +219,4 @@ C:\Users\Pierrick\Documents\Cours\C#\coursV2\Venezia\bin\Debug\netcoreapp3.1\New
 C:\Users\Pierrick\Documents\Cours\C#\coursV2\Venezia\obj\Debug\netcoreapp3.1\Venezia.csproj.CoreCompileInputs.cache
 C:\Users\Pierrick\Documents\Cours\C#\coursV2\Venezia\obj\Debug\netcoreapp3.1\Venezia.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Pierrick\Documents\Cours\C#\coursV2\Venezia\obj\Debug\netcoreapp3.1\Venezia.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Pierrick\Documents\Cours\C#\coursV2\Venezia\obj\Debug\netcoreapp3.1\Razor\Views\UserIdentity\Index.cshtml.g.cs
